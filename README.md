@@ -11,16 +11,13 @@ Think of Tabby Zero as the brain of Tabby One, running in a test lab. No wheels,
 ## What It Does
 
 - Captures live frames from your webcam
-- Runs object and person detection using YOLOv8 (draws bounding boxes in real time)
-- Sends the frame to a Vision-Language Model (VLM) via cloud API
+- Runs object and person detection using YOLOv12n (draws bounding boxes in real time)
+- Sends the frame to a Vision-Language Model (VLM) via cloud API probably QWEN
 - Gets back structured JSON advice: who is in the frame, how good the composition is, and what to adjust
 - Simulates camera movement by shifting/cropping the frame — no robot required
 - Runs a full composition loop: evaluate, adjust, re-evaluate, until the shot is good enough
 
 ---
-
-## What It Is Not
-
 Tabby Zero does not control any hardware. There are no motors, no ESP32, no Orange Pi NPU. This is intentional. Tabby Zero exists to validate the AI pipeline in isolation before integration with the robot in Phase 3 of the Tabby One roadmap.
 
 ---
