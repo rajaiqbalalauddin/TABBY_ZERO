@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+
+# Local tool/session data
+.claude/
+
+# Model weights — large binaries don't belong in git
+# (yolo12n.pt stays tracked since it was already pushed and is the default model)
+*.pt
+!yolo12n.pt
+weights/
+
+# Captured photos
+tabby_capture_*.jpg

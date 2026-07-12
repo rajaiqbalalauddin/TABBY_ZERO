@@ -1,0 +1,35 @@
+camera:
+  device_index: 0               # 0 = built-in webcam, 1 = external webcam
+
+yolo:
+  model_path: "yolo12n.pt"      # swap to "yolov8n-seg.pt" for segmentation masks
+  confidence_threshold: 0.5     # default threshold for all classes
+  class_confidence_overrides:
+    person: 0.25                # very sensitive — always catch the person
+    cup: 0.30                   # fairly sensitive — common demo prop
+    cell phone: 0.30            # fairly sensitive — common in scenes
+    chair: 0.75                 # strict — background clutter
+    tv: 0.80                    # strict — rarely relevant
+
+vlm:
+  provider: "qwen"
+  # API key comes from the DASHSCOPE_API_KEY environment variable.
+  # Never put a real key here — this file is tracked by git.
+  api_key: null
+  model: "qwen3-vl-flash"              # text-only model (no image sent). options: qwen-turbo | qwen-plus | qwen-max
+  max_retries: 2
+
+nima:
+  weights_path: "weights/nima_mobilenetv2.pth"   # path to pretrained NIMA weights
+  input_size: 224                                 # resize dimension for NIMA input
+  score_threshold: 5.0          # aesthetic score below this triggers VLM fix suggestions
+  device: null                  # null = auto-detect (cuda if available, else cpu)
+  monitor_interval: 5           # run NIMA every Nth frame in monitoring mode (display only; VLM calls always get a fresh score)
+
+composition:
+  good_enough_threshold: 0.75   # framing_quality score above this = is_good_enough true
+  max_iterations: 8             # how many VLM evaluations before the loop gives up
+  cooldown_seconds: 3.0         # minimum seconds between VLM calls in monitoring mode
+  movement_threshold_px: 40     # pixels an object must move to trigger a new VLM call
+  pixels_cm: 5.0            # simulator: how many pixels represent 1cm of movement
+  pixels_degree: 3.0        # simulator: how many pixels represent 1 degree of tilt
